@@ -1,8 +1,12 @@
 // import PokemonCard from "./PokemonCard";
 
+import { useNavigate } from "react-router-dom";
+
 // const ListContainer = styled.div``;
 
 const PokemonList = ({ MOCK_DATA, selectedPokemon, setSelectedPokemon }) => {
+  const navigate = useNavigate();
+
   function handleAddPokemon(pokemon) {
     const findSamePokemon = selectedPokemon.find(
       (c) => c?.korean_name === pokemon.korean_name
@@ -25,12 +29,14 @@ const PokemonList = ({ MOCK_DATA, selectedPokemon, setSelectedPokemon }) => {
       {MOCK_DATA.map((pokemon) => {
         return (
           <div key={pokemon.id}>
-            <h2>{pokemon.korean_name}</h2>
-            <img src={pokemon.img_url} />
-            <ul>
-              <li>{pokemon.types}</li>
-              <li>{pokemon.description}</li>
-            </ul>
+            <div onClick={() => navigate(`/dex?id=${pokemon.id}`)}>
+              <h2>{pokemon.korean_name}</h2>
+              <img src={pokemon.img_url} />
+              <ul>
+                <li>{pokemon.types}</li>
+                <li>{pokemon.description}</li>
+              </ul>
+            </div>
             <button onClick={() => handleAddPokemon(pokemon)}>추가</button>
           </div>
         );
