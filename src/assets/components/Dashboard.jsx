@@ -7,9 +7,9 @@ const Dashboard = ({ selectedPokemon, setSelectedPokemon }) => {
       return c?.korean_name === pokemon.korean_name;
     });
     deletePokemonArr.splice(deletePokemonIndex, 1, null);
-    // deletePokemonArr.sort((a, b) => {
-    //   (a === null) - (b === null);
-    // });
+    deletePokemonArr.sort((a, b) => {
+      return (a === null) - (b === null);
+    });
     setSelectedPokemon(deletePokemonArr);
   }
 

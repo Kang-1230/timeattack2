@@ -4,8 +4,18 @@
 
 const PokemonList = ({ MOCK_DATA, selectedPokemon, setSelectedPokemon }) => {
   function handleAddPokemon(pokemon) {
+    const findSamePokemon = selectedPokemon.find(
+      (c) => c?.korean_name === pokemon.korean_name
+    );
+    if (findSamePokemon) {
+      return alert("포켓몬 중복 선택 불가");
+    }
     const addPokemonArr = [...selectedPokemon];
     const addIndex = addPokemonArr.indexOf(null);
+    if (addIndex === -1) {
+      return alert("포켓몬은 6개까지만 선택 가능");
+    }
+
     addPokemonArr.splice(addIndex, 1, pokemon);
     setSelectedPokemon(addPokemonArr);
   }
